@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>How to Use NinjaTrader Bots on Topstep Without Violating the Rules</title>
+</head>
+<body>
+    <!--Navigation Menu-->
+    <nav class="nav-menu">
+        <ul>
+            <!--GStack-->
+            <div class="topnav">
+                <a href="https://www.pushbuttontrading.co/"><img class="gien" style="display: flex; justify-content: left; height: 80px;" src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/qW7QgQCvDcHBodo0Vrgr/media/671b988b73f528fb9b055b3f.png"></a>
+                <div class="topnav-right">
+                    <a class="active" href="https://www.pushbuttontrading.co/">Main</a>
+                    <a href="https://maps.app.goo.gl/EumN4BQWuWPEccBU7">Maps</a>
+                    <a href="https://www.pushbuttontrading.co/blog">Push Button Trading</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+    <!---Main Container-->
+    <div class="container">
+        <!--Main Wrapper-->
+        <div class="main-wrapper">
+                <section>
+                    <h1>How to Use NinjaTrader Bots on Topstep Without Violating the Rules</h1>
+                </section>
+                <section style="padding-top: 20px;">
+                         <div style="display: flex; justify-content: center;"><img style="height: 600px; width: 95%;" src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/qW7QgQCvDcHBodo0Vrgr/media/69ac192bb003fae68a0c756c.webp"></div>
+                </section>
+                <p>
+                    You've built — or bought — an automated trading bot. You've backtested it, you trust it, and now you want to put it to work on a Topstep funded account. But you're nervous. One wrong move and you lose the account. So what's actually allowed?
+                </p>
+                <p>
+                    Here's the good news: Topstep is one of the most automation-friendly prop firms in the futures space. Unlike Apex Trader Funding, which prohibits fully automated systems on funded accounts, Topstep explicitly allows trading bots and automated strategies — including on NinjaTrader. The catch is that you still have to play by Topstep's rules, and a bot that ignores those rules will blow your account just as fast as a bad trade.
+                </p>
+                <p>
+                    This guide breaks down exactly what Topstep allows, what it prohibits, and how to configure your NinjaTrader bots — including Push Button Trading's pre-built bot portfolio — to trade safely and profitably within Topstep's framework.
+                </p>
+                <h2>Does Topstep Actually Allow Automated Trading?</h2>
+                <p>
+                    Yes — and this is a big deal. Topstep explicitly permits the use of trading bots, Expert Advisors (EAs), and custom automated scripts on both the Trading Combine (evaluation) and Express Funded Accounts. There is no blanket ban on automation.
+                </p>
+                <p>
+                    However, Topstep is clear on one thing: you are fully responsible for your bot's behavior. If your automated strategy accidentally blows through a daily loss limit or violates a prohibited trading rule, Topstep will not compensate you or make exceptions. The bot is your responsibility.
+                </p>
+                <p>
+                    NinjaTrader is one of Topstep's officially supported platforms. If you purchased your Topstep account specifically for NinjaTrader, you can connect your NT8 strategies directly to your Combine or Funded Account and run them live.
+                </p>
+                <h2>Topstep's Rules Every Bot Must Respect</h2>
+                <p>
+                    Before you enable a single strategy on your Topstep account, you need to understand the rules your bot must follow automatically. Topstep's monitoring tools analyze trading patterns continuously — they can detect prohibited activity whether a human or a bot is placing the trades.
+                </p>
+                <h3>Maximum Loss Limit (MLL)</h3>
+                <p>
+                    Your bot must never let the account fall below the Maximum Loss Limit — a trailing drawdown based on your highest closing balance. This is the #1 account killer.
+                </p>
+                <h3>Daily Loss Limit (sometimes referred to as DLL)</h3>
+                <p>
+                    On NinjaTrader (non-TopstepX platform), a daily loss limit applies. Your bot must stop trading once this is reached for the day.
+                </p>
+                <h3>No High-Frequency Trading (HFT)</h3>
+                <p>
+                    Strategies that generate excessive order flow — placing and canceling large numbers of orders rapidly — are prohibited. Your bot must trade at a normal human-like frequency.
+                </p>
+                <h3>No Market Manipulation</h3>
+                <p>
+                    Your bot cannot exploit gaps in Topstep's simulation environment, engage in wash trading, or use strategies designed to game the evaluation system.
+                </p>
+                <h3>Consistency Rule (Combine Only)</h3>
+                <p>
+                    During the Trading Combine evaluation, your single best trading day cannot exceed 50% of your total profits. A bot that scores one massive day and then flatlines will trigger a higher profit target.
+                </p>
+                <h3>No VPS / VPN</h3>
+                <p>
+                    Topstep prohibits running bots from a VPS or behind a VPN. Your bot must run on your local machine.
+                </p>
+                <h3>No Copy Trading Between Accounts</h3>
+                <p>
+                    You cannot mirror trades from one Topstep account to another. Each account must trade independently.
+                </p>
+                <h2>Connecting NinjaTrader to Your Topstep Account</h2>
+                <p>
+                    Before running any bot strategy, you need to make sure NinjaTrader is properly connected to your live Topstep account — not the simulator. Many traders get tripped up here.
+                </p>
+                <ol>
+                    <li><span style="color: #29344f;">Step 1: Purchase your Topstep account for NinjaTrader</span>. When signing up, make sure you select NinjaTrader as your platform. Accounts are platform-specific — a Tradovate account cannot be connected to NinjaTrader.</li>
+                    <li><span style="color: #29344f;">Step 2: Input your Live License Key in NinjaTrader.</span> Go to Help → License Key and enter your live (not simulation) key. Without this, NinjaTrader defaults to simulation mode.</li>
+                    <li><span style="color: #29344f;">Step 3: Disable Global Simulation Mode.</span> Go to Tools and uncheck Global Simulation Mode. Your live Topstep account will now appear in the Account dropdown on any Order Entry window or strategy.</li>
+                    <li><span style="color: #29344f;">Step 4: Connect using Rithmic.</span> Topstep's NinjaTrader connection runs through Rithmic. Configure your Rithmic connection in NinjaTrader's Connections menu using the credentials from your Topstep dashboard.</li>
+                    <li><span style="color: #29344f;">Step 5: Test in Practice mode first.</span> Topstep provides a Practice Account — use it to verify your bot is functioning correctly before enabling it on your live Combine or Funded Account.</li>
+                </ol>
+                <section>
+                    <a class="button-link"
+                        href="https://www.pushbuttontrading.co/">Visit Us</a>
+                </section>
+                <h2>Topstep Rules You Must Follow When Using NinjaTrader Bots</h2>
+                <p>
+                    The most common reason traders lose their Topstep account with a bot is not a bad strategy — it's a misconfigured one. Here is exactly how to set up your NinjaTrader strategies to trade safely within Topstep's framework.
+                </p>
+                <h3 style="color: #000000;"><b>1. Hard-Code a Daily Loss Limit Into Your Strategy</b></h3>
+                <p>
+                    NinjaTrader allows you to set a maximum daily loss threshold directly within a strategy's properties. Set this to slightly below Topstep's daily loss limit — giving yourself a small buffer. Once your bot hits this threshold, it should automatically stop submitting new orders for the rest of the session.
+                </p>
+                <p>
+                    Example: On a $50,000 Topstep account, the daily loss limit is $1,000. Set your bot's max daily loss to $900 — stopping it $100 before the hard limit. Never cut it close.
+                </p>
+                <h3 style="color: #000000;"><b>2. Set Contract Size Limits</b></h3>
+                <p>
+                    Topstep restricts the number of contracts you can trade based on your account size. For a $50,000 account, the maximum is 5 contracts. Your bot must never exceed this. In NinjaTrader, this is controlled through the strategy's Position Size setting — lock it to the maximum number of contracts allowed for your account tier and never leave it set to a dynamic or uncapped value.
+                </p>
+                <h3 style="color: #000000;"><b>3. Avoid News Events</b></h3>
+                <p>
+                    While Topstep allows news trading, major economic releases can cause extreme, unpredictable price spikes that can rapidly breach your Maximum Loss Limit. Configure your bots to stop trading 5 minutes before and after major scheduled events like CPI, FOMC decisions, and NFP reports. NinjaTrader's session templates allow you to define trading windows, or you can build a news filter into your strategy logic.
+                </p>
+                <h3 style="color: #000000;"><b>4. Define a Session End Time</b></h3>
+                <p>
+                    Bots that trade outside of normal market hours or through overnight sessions can expose you to overnight gaps and illiquid conditions that quickly become dangerous. Configure your NinjaTrader strategies to use a defined session template — typically 9:30 AM to 4:00 PM ET for equity index futures — and set the strategy to flatten all positions at session end.
+                </p>
+                <h3 style="color: #000000;"><b>5. Monitor the Consistency Rule During Your Combine</b></h3>
+                <p>
+                    During the Topstep Trading Combine only, your single best day cannot exceed 50% of your cumulative profits. This rule does not apply once you are in a funded account. Be aware of it during evaluation: if your bot has one exceptional day early in the Combine, it can inadvertently raise the profit target required to pass. Track your running P&L daily and be ready to dial back position size if one day is running significantly ahead of your average.
+                </p>
+                <h2>Which Push Button Trading Bots Work Best on Topstep?</h2>
+                <p>
+                    Push Button Trading's suite of 8 pre-built NinjaTrader bots are designed specifically for futures trading in funded account environments. Each bot comes with over 300 pre-defined settings, all backtested across 4 years of market data, and they are built around the kind of disciplined, rules-based execution that Topstep rewards.
+                </p>
+                <p>
+                    Here is how each bot aligns with Topstep's environment:
+                </p>
+                <ul>
+                    <li><span style="color: #29344f;">Mega ORB Bot:</span>  Trades the Opening Range Breakout — capturing momentum in the first minutes of the session. Well-suited to Topstep's normal trading hours and consistent in structured markets.</li>
+                    <li><span style="color: #29344f;">10 EMA Bot:</span> Follows the 10 EMA for sustained directional moves. Conservative and trend-following, which aligns well with Topstep's consistency requirements during the Combine.</li>
+                    <li><span style="color: #29344f;">Mega Scalper Bot:</span> Executes rapid trades for small price movements. Works well on Topstep since it is not high-frequency trading — it targets meaningful price moves, not order book manipulation.</li>
+                    <li><span style="color: #29344f;">Mega Snapback Bot:</span> Trades mean reversion in ranging, choppy markets. Particularly useful when the ORB or EMA bots are not performing, giving you a balanced portfolio across market conditions.</li>
+                    <li><span style="color: #29344f;">NR7 Narrow Range Bot:</span> Detects consolidation and trades the subsequent breakout. Lower trade frequency and high selectivity — keeps daily exposure controlled.</li>
+                    <li><span style="color: #29344f;">ORB Breakout Bot:</span> Focuses on key support and resistance breakouts throughout the session. Pairs well with the Mega ORB Bot for morning and mid-session coverage.</li>
+                    <li><span style="color: #29344f;">Snapback Mean Reversion Bot:</span> Targets overbought and oversold conditions. Excellent for Topstep funded accounts where steady, consistent returns matter more than occasional big wins.</li>
+                    <li><span style="color: #29344f;">Volume Spike Bot:</span> Identifies institutional activity through volume analysis. Can be used to filter entries for other bots or traded independently in high-volume environments.</li>
+                </ul>
+                <p>
+                    The key advantage of using Push Button Trading's portfolio system on Topstep is that you don't have to run a single bot and hope for the best. You can combine multiple bots, each with different strategies and personalities, so that on any given day — trending, ranging, or volatile — at least one bot is well-positioned to produce consistent results.
+                </p>
+                <h2>Using the Trade Copier Across Multiple Topstep Accounts</h2>
+                <p>
+                    Topstep allows traders to hold up to 5 Express Funded Accounts simultaneously. This creates a powerful opportunity: if you have a bot portfolio that is passing one Combine, you can scale by running the same approach across multiple accounts.
+                </p>
+                <p>
+                    Push Button Trading's Trade Copier allows you to copy one trade signal into up to 20 accounts simultaneously — including separate Topstep accounts. Because each account is independently placed (not cross-mirrored from a single account), this does not violate Topstep's rules against copy trading between accounts, as long as each account is under your name and trading independently.
+                </p>
+                <p>
+                    <a href="">Important:</a> Always verify with Topstep's support that your specific setup is compliant before deploying across multiple funded accounts. Rules can change, and you want written confirmation before scaling.
+                </p>
+                <h2>Common Mistakes That Get Traders Disqualified</h2>
+                <p>
+                    Even with a great bot and a solid understanding of the rules, traders lose Topstep accounts regularly due to avoidable configuration errors. These are the most common ones:
+                </p>
+                <ul>
+                    <li>Running the bot in Global Simulation Mode by mistake — all trades go to sim and none to the live account, or vice versa.</li>
+                    <li>Not setting a daily loss cap in the strategy, allowing a losing streak to breach the daily limit in one session.</li>
+                    <li>Leaving position sizing uncapped, allowing the bot to scale into more contracts than the account allows</li>
+                    <li>Forgetting the consistency rule during the Combine — one monster day can reset your target.</li>
+                    <li>Trading through major economic announcements — even a brief spike can trigger the Maximum Loss Limit.</li>
+                    <li>Using a VPS to run the bot remotely, which Topstep explicitly prohibits.</li>
+                    <li>Buying a Tradovate Topstep account and then trying to connect it through NinjaTrader — it won't work.</li>
+                </ul>
+                <h2>The Right Mindset for Bot Trading on a Funded Account</h2>
+                <p>
+                    Automated trading does not mean set-and-forget — especially on a funded account where real consequences exist. The most successful traders using bots on Topstep treat their automation as a co-pilot, not a replacement for oversight.
+                </p>
+                <p>
+                    Check your bot's performance at least once per day. Review the trades it placed. Verify that your account is tracking normally against Push Button Trading's 4-year benchmark data. If something looks off — an unusually large drawdown, an unexpected string of losses, or a position that did not close when it should have — step in and pause the bot before it does more damage.
+                </p>
+                <p>
+                    The goal is consistent, sustainable income from your funded account — not maximum returns in minimum time. Topstep rewards discipline. The traders who keep their funded accounts longest are the ones whose bots are tuned for consistency, not the ones swinging for the fences.
+                </p>
+            <section>
+                <p style="background-color: #9ca9a8; margin-right: 706px;">
+                    Ready to deploy bots on your Topstep account?
+                </p>
+                <p style="background-color: #9ca9a8;;">
+                    Push Button Trading's pre-built NinjaTrader bots come with 300+ settings backtested over 4 years — and our Portfolio Builder helps you select the right combination for your Topstep account size and risk profile. Start your free trial today and see how automated, rules-compliant trading can work for you.
+                </p>
+            </section>
+                <p>
+                    <b><a href="http://pushbuttontrading.co/?_gl=1*1crur2e*_gcl_au*MjExMTk5NTg2LjE3ODAzNzczODU.">→ Visit pushbuttontrading.co to start your free trial</a></b>
+                </p>
+                <h2>Summary: The Quick-Reference Checklist</h2>
+                <p>
+                    Before enabling any NinjaTrader bot on your Topstep account, run through this checklist:
+                </p>
+                <ul>
+                    <li>Topstep account purchased specifically for the NinjaTrader platform</li>
+                    <li>Live License Key entered in NinjaTrader (not simulation key)</li>
+                    <li>Global Simulation Mode is OFF in NinjaTrader Tools menu</li>
+                    <li>Rithmic connection configured with your Topstep credentials</li>
+                    <li>Bot's daily loss limit set below Topstep's threshold (with buffer)</li>
+                    <li>Contract size hard-capped at your account's maximum</li>
+                    <li>News event filter configured to pause trading around major releases</li>
+                    <li>Session end time set — all positions flatten before market close</li>
+                    <li>Consistency rule tracked during Combine phase</li>
+                    <li>Practice Account test run completed successfully</li>
+                    <li>VPS and VPN NOT used — bot runs on your local machine</li>
+                    <li>Performance reviewed daily against Push Button Trading benchmark data</li>
+                </ul>
+                <p>
+                    <b>Topstep is one of dozens of funded account programs available for automated futures traders — and NinjaTrader is its most powerful platform for running sophisticated bot strategies. Get the configuration right, respect the rules, and your bots can run consistently across multiple funded accounts, compounding your results month over month.</b>
+                </p>
+                <h3>That's exactly what Push Button Trading is built for. More info about our bot trading technology here</h3>
+            </section>
+            <!--Content-->
+             <section>
+                 <a class="button-link"
+                    href="https://www.pushbuttontrading.co/post/how-to-use-ninjatrader-bots-on-topstep-without-violating-the-rules">Read Post</a>
+                </section>
+            <!--Embeds-->
+            <section>
+                <h2>Maps</h2>
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3109.2429209759225!2d-86.8374809472442!3d35.91622084246229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88647f2781e74e4d%3A0x5e39493c7de868a!2s1113%20Murfreesboro%20Rd%20%23106%2C%20Franklin%2C%20TN%2037064%2C%20USA!5e1!3m2!1sen!2sph!4v1780378011623!5m2!1sen!2sph" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </section>
+            <section>
+                <h2>Things To Do in United States</h2>
+                <iframe name="myiFrame" width="100%" height="400px" src="https://www.viator.com/USA/d77-ttd?pid=P00287146&mcid=42383&medium=link&campaign=TTD0326&gad_source=1&gad_campaignid=23599939670&gbraid=0AAAABCyvy_YMBBjnGeTjjPM-CUG0bMeqq&gclid=Cj0KCQjw2_TQBhCnARIsAF3-XhxQZ0Evevl3PA96sVy8w8s0heSQ_hRt3_7pSd8wraEk3FWbFvT1AYQaAvQZEALw_wcB&dd_referrer=https%3A%2F%2Fwww.google.com%2F" scrolling="yes" style="border:0px none #000000;box-shadow:0 2px 6px rgba(0,0,0,0.1);border-radius:10px;"></iframe>
+            </section>
+            <section>
+                <h2>News</h2>
+                <iframe name="myiFrame" width="100%" height="400px" src="https://abcnews.com/" scrolling="yes" style="border:0px none #000000;box-shadow:0 2px 6px rgba(0,0,0,0.1);border-radius:10px;"></iframe>
+            </section>
+            <section>
+                <h2>Website</h2>
+                <iframe name="myiFrame" width="100%" height="400px" src="https://www.pushbuttontrading.co/" scrolling="yes" style="border:0px none #000000;box-shadow:0 2px 6px rgba(0,0,0,0.1);border-radius:10px;"></iframe>
+            </section>
+            <!--Cloudstack Links-->
+            <h2>Cloudstack Links</h2>
+            <section>
+                <a target="_bLank" href=""></a><br>
+                <a target="_bLank" href=""></a><br>
+                <a target="_bLank" href=""></a><br>
+            </section>
+        <!---Sidebar-->
+        <div class="side-bar">
+            <section>
+                <h2>Useful Links</h2>
+                <ul>
+                    <li><a class="button-link1" href="https://www.facebook.com/profile.php?id=61559567700947"><i style="font-size:14px" class="fa fa-facebook"></i> Facebook</a></li>
+                    <li><a class="button-link1" href="https://instagram.com/pushbutton.trading"><i style="font-size:14px" class="fa fa-instagram"></i> Instagram</a></li>
+                    <li><a class="button-link1" href=""><i style="font-size:14px" class="fa fa-Tiktok"></i> Tiktok</a></li>
+                    <li><a class="button-link1" href="https://x.com/pushbuttontrade"><i style="font-size:14px" class="fa fa-twitter"></i> twitter</a></li>
+                    <li><a class="button-link1" href=""><i style="font-size:14px" class="fa fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a class="button-link1" href=""><i style="font-size:14px" class="fa fa-pinterest"></i> Pinterest</a></li>
+                    <li><a class="button-link1" href="https://www.youtube.com/channel/UCM_LLQ5YTtkMNJwbIuEExCw"><i style="font-size:14px" class="fa fa-youtube"></i> Youtube</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
